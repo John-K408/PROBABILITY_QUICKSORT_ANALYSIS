@@ -2,8 +2,14 @@ import java.util.Arrays;
 
 public class QuickSortRandom {
     public static  void main(String[] args) {
-        int[] array = new int[]{1,4,3,8,7,5,9,0};
-        System.out.println(QuickSort(array,0,array.length - 1,0));
+
+
+        Generate ArrayTypes = new Generate();
+
+        System.out.println();
+
+
+
 
     }
 
