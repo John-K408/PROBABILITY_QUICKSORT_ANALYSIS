@@ -10,8 +10,8 @@ public class QuickSortRandom {
     public static int QuickSort(int[] array,int low, int high,int count){
         if(high > low){
             //the randomIndex is the index of the number we will be using to group the array from low to high
-            //int randomIndex = low + (int)(Math.random()*(high - low));
-            int randomIndex = high;
+            int randomIndex = low + (int)(Math.random()*(high - low + 1));
+            //int randomIndex = high;
             System.out.println(randomIndex);
 
             //partition method returns an array of size 02.
