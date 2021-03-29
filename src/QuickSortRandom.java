@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class QuickSortRandom {
     public static  void main(String[] args) {
-        int[] array = new int[]{1,4,3};
+        int[] array = new int[]{1,4,3,8,7,5,9,0};
         System.out.println(QuickSort(array,0,array.length - 1,0));
 
     }
@@ -12,7 +12,7 @@ public class QuickSortRandom {
             //the randomIndex is the index of the number we will be using to group the array from low to high
             int randomIndex = low + (int)(Math.random()*(high - low + 1));
             //int randomIndex = high;
-            System.out.println(randomIndex);
+            //System.out.println(randomIndex);
 
             //partition method returns an array of size 02.
             //the first element will be the partitionIndex and the second will be the number of counts in the partition method.
