@@ -12,7 +12,7 @@ public class QuickSortRandom {
             PrintStream output = new PrintStream("generateRandomInput1.txt");
 
             for(int n = 1; n <= maxArraySize;n++) {
-                output.printf(n + "," + computeAverage(n, 100000, arrayTypes[0]));
+                output.printf(n + "," + computeAverage(n, 100, arrayTypes[0]));
                 output.println();
             }
             output.close();
@@ -25,7 +25,7 @@ public class QuickSortRandom {
             PrintStream output = new PrintStream("generatePartiallySortedInput1.txt");
 
             for(int n = 1; n <= maxArraySize;n++) {
-                output.printf(n + "," + computeAverage(n, 100000, arrayTypes[1]));
+                output.printf(n + "," + computeAverage(n, 100, arrayTypes[1]));
                 output.println();
             }
             output.close();
@@ -38,7 +38,7 @@ public class QuickSortRandom {
             PrintStream output = new PrintStream("generateMostlySortedInput1.txt");
 
             for(int n = 1; n <= maxArraySize;n++) {
-                output.printf(n + "," + computeAverage(n, 100000, arrayTypes[2]));
+                output.printf(n + "," + computeAverage(n, 100, arrayTypes[2]));
                 output.println();
             }
             output.close();

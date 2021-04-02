@@ -18,7 +18,7 @@ public class QuickSortDeterministic {
             PrintStream output = new PrintStream("generateRandomInput.txt");
 
             for(int n = 1; n <= maxArraySize;n++) {
-                output.printf(n + "," + computeAverage(n, 100000, arrayTypes[0]));
+                output.printf(n + "," + computeAverage(n, 100, arrayTypes[0]));
                 output.println();
             }
             output.close();
@@ -31,7 +31,7 @@ public class QuickSortDeterministic {
             PrintStream output = new PrintStream("generatePartiallySortedInput.txt");
 
             for(int n = 1; n <= maxArraySize;n++) {
-                output.printf(n + "," + computeAverage(n, 100000, arrayTypes[1]));
+                output.printf(n + "," + computeAverage(n, 100, arrayTypes[1]));
                 output.println();
             }
             output.close();
@@ -44,7 +44,7 @@ public class QuickSortDeterministic {
             PrintStream output = new PrintStream("generateMostlySortedInput.txt");
 
             for(int n = 1; n <= maxArraySize;n++) {
-                output.printf(n + "," + computeAverage(n, 100000, arrayTypes[2]));
+                output.printf(n + "," + computeAverage(n, 100, arrayTypes[2]));
                 output.println();
             }
             output.close();
