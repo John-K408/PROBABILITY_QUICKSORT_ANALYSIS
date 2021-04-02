@@ -1,3 +1,5 @@
+import java.io.PrintStream;
+
 public class QuickSortDeterministic {
     public static void main(String[] args) {
         /*Generate arr = new Generate();
@@ -9,14 +11,59 @@ public class QuickSortDeterministic {
 
 //        double average = computeAverage(20,100000,arrayTypes[0]);
 
-        int maxArraySize = 1000000;
+        int maxArraySize = 500;
 
-        for(int n = 1; n <= maxArraySize;n++){
-            System.out.println("ArraySize "+ n + ": " + computeAverage(n,100,arrayTypes[0]));
+
+        try {
+            PrintStream output = new PrintStream("generateRandomInput.txt");
+
+            for(int n = 1; n <= maxArraySize;n++) {
+                output.printf(n + "," + computeAverage(n, 100000, arrayTypes[0]));
+                output.println();
+            }
+            output.close();
+        }
+        catch(Exception e) {
+            e.getStackTrace();
         }
 
+        try {
+            PrintStream output = new PrintStream("generatePartiallySortedInput.txt");
+
+            for(int n = 1; n <= maxArraySize;n++) {
+                output.printf(n + "," + computeAverage(n, 100000, arrayTypes[1]));
+                output.println();
+            }
+            output.close();
+        }
+        catch(Exception e) {
+            e.getStackTrace();
+        }
+
+        try {
+            PrintStream output = new PrintStream("generateMostlySortedInput.txt");
+
+            for(int n = 1; n <= maxArraySize;n++) {
+                output.printf(n + "," + computeAverage(n, 100000, arrayTypes[2]));
+                output.println();
+            }
+            output.close();
+        }
+        catch(Exception e) {
+            e.getStackTrace();
+        }
+            //System.out.println("ArraySize "+ n + ": " + computeAverage(n,100000,arrayTypes[0]));
 
 
+//        int[] A = {1,4,3,8,7,5,9,0};
+//
+//        System.out.println("----comparison count------");
+//        System.out.println(QuickSort(A,0, A.length-1,0));
+//
+//        for (int j : A) {
+//            System.out.println("----sorted elements------");
+//            System.out.println(j);
+//        }
 
 
     }
@@ -31,25 +78,27 @@ public class QuickSortDeterministic {
         return counter;
     }
 
-    public static int[] partition(int[] arr,int lo, int hi){
-        int pivot = arr[hi];
-        int i = (lo-1);
+    public static int[] partition(int[]array, int low, int high){
+        //upper bound defines the upper end of the unprocessed array
+        int upperbound = high - 1;
+        //lower bound defines the lower end of the unprocessed array
+        int lowerbound = low;
+        int toBeComparedWith = array[high];
+        int counts = 0;
 
-        int counter = 0;
-
-        for (int j = lo; j < hi; j++) {
-            if (arr[j] <= pivot) {
-                i++;
-                swap(arr,i,j);
+        while(lowerbound <= upperbound){
+            counts++;
+            if(array[lowerbound]<= toBeComparedWith){
+                lowerbound++;
             }
-            counter++;
+            else{
+                swap(array,lowerbound,upperbound);
+                upperbound--;
+            }
         }
+        swap(array,high,upperbound + 1);
+        return new int[]{upperbound + 1,counts};
 
-        //System.out.println("--counting--");
-        //System.out.println(counter);
-
-        swap(arr,hi,i+1);
-        return new int[]{i + 1, counter};
     }
 
     public static void swap(int[]array, int i, int j){
