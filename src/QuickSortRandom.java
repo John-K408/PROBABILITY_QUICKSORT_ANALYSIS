@@ -5,10 +5,10 @@ public class QuickSortRandom {
         String[] arrayTypes = new String[]{"generateRandomInput","generatePartiallySortedInput","generateMostlySortedInput"};
 
 //        double average = computeAverage(20,100000,arrayTypes[0]);
-        int maxArraySize = 50;
+        int maxArraySize = 1000000;
 
         for(int n = 1; n <= maxArraySize;n++){
-            System.out.println("ArraySize "+ n + ": " + computeAverage(n,100000,arrayTypes[0]));
+            System.out.println("ArraySize "+ n + ": " + computeAverage(n,100,arrayTypes[0]));
         }
 
 //        int[] array = new int[]{1,4,3,8,7,5,9,0};

@@ -12,19 +12,11 @@ public class QuickSortDeterministic {
         int maxArraySize = 1000000;
 
         for(int n = 1; n <= maxArraySize;n++){
-            System.out.println("ArraySize "+ n + ": " + computeAverage(n,100000,arrayTypes[0]));
+            System.out.println("ArraySize "+ n + ": " + computeAverage(n,100,arrayTypes[0]));
         }
 
 
-//        int[] A = {1,4,3,8,7,5,9,0};
-//
-//        System.out.println("----comparison count------");
-//        System.out.println(QuickSort(A,0, A.length-1,0));
-//
-//        for (int j : A) {
-//            System.out.println("----sorted elements------");
-//            System.out.println(j);
-//        }
+
 
 
     }
