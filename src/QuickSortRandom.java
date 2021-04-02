@@ -1,3 +1,4 @@
+import java.io.PrintStream;
 import java.util.Arrays;
 
 public class QuickSortRandom {
@@ -5,10 +6,45 @@ public class QuickSortRandom {
         String[] arrayTypes = new String[]{"generateRandomInput","generatePartiallySortedInput","generateMostlySortedInput"};
 
 //        double average = computeAverage(20,100000,arrayTypes[0]);
-        int maxArraySize = 50;
+        int maxArraySize = 500;
 
-        for(int n = 1; n <= maxArraySize;n++){
-            System.out.println("ArraySize "+ n + ": " + computeAverage(n,100000,arrayTypes[0]));
+        try {
+            PrintStream output = new PrintStream("generateRandomInput1.txt");
+
+            for(int n = 1; n <= maxArraySize;n++) {
+                output.printf(n + "," + computeAverage(n, 100000, arrayTypes[0]));
+                output.println();
+            }
+            output.close();
+        }
+        catch(Exception e) {
+            e.getStackTrace();
+        }
+
+        try {
+            PrintStream output = new PrintStream("generatePartiallySortedInput1.txt");
+
+            for(int n = 1; n <= maxArraySize;n++) {
+                output.printf(n + "," + computeAverage(n, 100000, arrayTypes[1]));
+                output.println();
+            }
+            output.close();
+        }
+        catch(Exception e) {
+            e.getStackTrace();
+        }
+
+        try {
+            PrintStream output = new PrintStream("generateMostlySortedInput1.txt");
+
+            for(int n = 1; n <= maxArraySize;n++) {
+                output.printf(n + "," + computeAverage(n, 100000, arrayTypes[2]));
+                output.println();
+            }
+            output.close();
+        }
+        catch(Exception e) {
+            e.getStackTrace();
         }
 
 //        int[] array = new int[]{1,4,3,8,7,5,9,0};
