@@ -12,13 +12,43 @@ public class QuickSortDeterministic {
 //        double average = computeAverage(20,100000,arrayTypes[0]);
 
         int maxArraySize = 500;
+        int numTries = 100;
+        int nForVariance = 400;
+
+        //These array will be filled with the individual counts for each instance of the array of given
+        // size n,that will be generated in ComputeAverage
+        //The array that we will use depends on the configuration we are looking for.
+        int[] countsRandomInput = new int[numTries];
+        int[]countsPartiallySortedInput = new int[numTries];
+        int[]countsMostlySortedInput =new int[numTries];
+
+        double averageForRandomInput;
+        double averageForPartiallySortedInput;
+        double averageForMostlySortedInput;
+
+
+
+
+
+
+//        averageCaller(maxArraySize,new int[maxArraySize],numTries,arrayTypes[0]);
+//        averageCaller(maxArraySize,new int[maxArraySize],numTries,arrayTypes[1]);
+//        averageCaller(maxArraySize,new int[maxArraySize],numTries,arrayTypes[2]);
+
 
 
         try {
             PrintStream output = new PrintStream("generateRandomInput.txt");
-
+            double average;
             for(int n = 1; n <= maxArraySize;n++) {
-                output.printf(n + "," + computeAverage(n, 100000, arrayTypes[0]));
+                if(n == nForVariance){
+                    average = computeAverage(n,countsRandomInput, numTries, arrayTypes[0]);
+                    averageForRandomInput = average;
+                }
+                else{
+                    average = computeAverage(n,new int[numTries],numTries,arrayTypes[0]);
+                }
+                output.printf(n + "," + average);
                 output.println();
             }
             output.close();
@@ -26,12 +56,21 @@ public class QuickSortDeterministic {
         catch(Exception e) {
             e.getStackTrace();
         }
+
 
         try {
             PrintStream output = new PrintStream("generatePartiallySortedInput.txt");
+            double average;
 
             for(int n = 1; n <= maxArraySize;n++) {
-                output.printf(n + "," + computeAverage(n, 100000, arrayTypes[1]));
+                if(n == nForVariance){
+                    average = computeAverage(n,countsPartiallySortedInput, numTries, arrayTypes[1]);
+                    averageForPartiallySortedInput = average;
+                }
+                else{
+                    average = computeAverage(n,new int[numTries],numTries,arrayTypes[1]);
+                }
+                output.printf(n + "," + average);
                 output.println();
             }
             output.close();
@@ -39,12 +78,21 @@ public class QuickSortDeterministic {
         catch(Exception e) {
             e.getStackTrace();
         }
+
+
 
         try {
             PrintStream output = new PrintStream("generateMostlySortedInput.txt");
-
+            double average;
             for(int n = 1; n <= maxArraySize;n++) {
-                output.printf(n + "," + computeAverage(n, 100000, arrayTypes[2]));
+                if(n == nForVariance){
+                    average = computeAverage(n,countsMostlySortedInput, numTries, arrayTypes[2]);
+                    averageForMostlySortedInput = average;
+                }
+                else{
+                    average = computeAverage(n,new int[numTries],numTries,arrayTypes[2]);
+                }
+                output.printf(n + "," + average);
                 output.println();
             }
             output.close();
@@ -52,7 +100,14 @@ public class QuickSortDeterministic {
         catch(Exception e) {
             e.getStackTrace();
         }
-            //System.out.println("ArraySize "+ n + ": " + computeAverage(n,100000,arrayTypes[0]));
+
+
+
+
+
+
+
+        //System.out.println("ArraySize "+ n + ": " + computeAverage(n,100000,arrayTypes[0]));
 
 
 //        int[] A = {1,4,3,8,7,5,9,0};
@@ -67,6 +122,57 @@ public class QuickSortDeterministic {
 
 
     }
+
+//    public static void averageCaller(int maxArraySize,int[] countsArray,int numTries, String arrayType){
+//        if(arrayType.toLowerCase().equals("generaterandominput")){
+//            try {
+//                PrintStream output = new PrintStream("generateRandomInput.txt");
+//
+//                for(int n = 1; n <= maxArraySize;n++) {
+//                    output.printf(n + "," + computeAverage(n,countsArray, 100, arrayType));
+//                    output.println();
+//                }
+//                output.close();
+//            }
+//            catch(Exception e) {
+//                e.getStackTrace();
+//            }
+//        }
+//        if(arrayType.toLowerCase().equals("generatepartiallysortedinput")){
+//            try {
+//                PrintStream output = new PrintStream("generatePartiallySortedInput.txt");
+//
+//                for(int n = 1; n <= maxArraySize;n++) {
+//                    output.printf(n + "," + computeAverage(n,countsArray, 100, arrayType));
+//                    output.println();
+//                }
+//                output.close();
+//            }
+//            catch(Exception e) {
+//                e.getStackTrace();
+//            }
+//        }
+//
+//        if(arrayType.toLowerCase().equals("generatemostlysortedinput")){
+//            try {
+//                PrintStream output = new PrintStream("generateMostlySortedInput.txt");
+//
+//                for(int n = 1; n <= maxArraySize;n++) {
+//                    output.printf(n + "," + computeAverage(n,countsArray, 100, arrayType));
+//                    output.println();
+//                }
+//                output.close();
+//            }
+//            catch(Exception e) {
+//                e.getStackTrace();
+//            }
+//        }
+//
+//
+//
+//
+//
+//    }
 
     public static int QuickSort (int[] arr, int lo, int hi, int counter) {
         if (hi>lo){
@@ -107,7 +213,7 @@ public class QuickSortDeterministic {
         array[j] = temp;
     }
 
-    public static double computeAverage(int arraysize, int numTries, String arrayInputType){
+    public static double computeAverage(int arraysize,int []countsArray, int numTries, String arrayInputType){
         //if the user puts in the wrong arraysize to be generated, print error
         if(arraysize <1) System.err.println("The size of the array must be at least 1");
 
@@ -138,6 +244,7 @@ public class QuickSortDeterministic {
 
             //the count (number of comparisons) of quicksort for this current input
             int currCount = QuickSort(array,0,arraysize - 1,0);
+            countsArray[i] = currCount;
 
 //            System.out.println("-------Current count-----");
 //            System.out.println(currCount);
@@ -152,6 +259,12 @@ public class QuickSortDeterministic {
         return totalCounter/numTries;
 
     }
+
+//    public static int computeVariance(int arraySize,int numTries,String arrayInput){
+//
+//
+//        return -1;
+//    }
 
 
 }
