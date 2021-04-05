@@ -69,7 +69,8 @@ plt.subplot(1, 3, 3)
 plt.plot(x, y, color="black")
 plt.plot(X3, Y3, color='red')
 plt.xlabel('Array Size')
-plt.legend(["generateRandomInput", "generatePartiallySortedInput", "2nln(n)", "generateMostlySortedInput"])
+plt.legend(["2nln(n)", "generateMostlySortedInput"])
+#plt.legend(["generateRandomInput", "generatePartiallySortedInput", "2nln(n)", "generateMostlySortedInput"])
 
 
 
