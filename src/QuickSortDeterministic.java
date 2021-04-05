@@ -11,7 +11,7 @@ public class QuickSortDeterministic {
 
 //        double average = computeAverage(20,100000,arrayTypes[0]);
 
-        int maxArraySize = 500;
+        int maxArraySize = 10000;
         int numTries = 100;
         int nForVariance = 400;
 
@@ -48,7 +48,7 @@ public class QuickSortDeterministic {
                 else{
                     average = computeAverage(n,new int[numTries],numTries,arrayTypes[0]);
                 }
-                output.printf(n + "," + average);
+                output.print(n + "," + average);
                 output.println();
             }
             output.close();
@@ -70,7 +70,7 @@ public class QuickSortDeterministic {
                 else{
                     average = computeAverage(n,new int[numTries],numTries,arrayTypes[1]);
                 }
-                output.printf(n + "," + average);
+                output.print(n + "," + average);
                 output.println();
             }
             output.close();
@@ -92,7 +92,7 @@ public class QuickSortDeterministic {
                 else{
                     average = computeAverage(n,new int[numTries],numTries,arrayTypes[2]);
                 }
-                output.printf(n + "," + average);
+                output.print(n + "," + average);
                 output.println();
             }
             output.close();
@@ -228,14 +228,14 @@ public class QuickSortDeterministic {
 
         for(int i = 0; i < numTries;i++){
 
-            if(arrayInputType.toLowerCase().equals("generaterandominput")){
+            if(arrayInputType.equalsIgnoreCase("generaterandominput")){
                 array = generator.generateRandomInput(arraysize);
             }
-            else if(arrayInputType.toLowerCase().equals("generatepartiallysortedinput")){
+            else if(arrayInputType.equalsIgnoreCase("generatepartiallysortedinput")){
                 array = generator.generatePartiallySortedInput(arraysize);
             }
 
-            else if(arrayInputType.toLowerCase().equals("generatemostlysortedinput")){
+            else if(arrayInputType.equalsIgnoreCase("generatemostlysortedinput")){
                 array = generator.generateMostlySortedInput(arraysize);
             }
             else{

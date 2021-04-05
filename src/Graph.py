@@ -14,13 +14,13 @@ Y2 = []
 X3 = []
 Y3 = []
 
-x = np.linspace(0, 500, 500)
+x = np.linspace(0, 10000, 10000)
 y = 2 * x * np.log(x)
 
 # "generateRandomInput","generatePartiallySortedInput","generateMostlySortedInput"
 # "generateRandomInput","generatePartiallySortedInput","generateMostlySortedInput"
 
-with open('generateRandomInput.txt', 'r') as datafile:
+with open('/Applications/IntelliJ IDEA CE.app/Contents/bin/PROBABILITY_QUICKSORT_ANALYSIS/src/generateRandomInput1.txt', 'r') as datafile:
     graph1 = csv.reader(datafile, delimiter=',')
 
     for ROWS in graph1:
@@ -30,7 +30,7 @@ with open('generateRandomInput.txt', 'r') as datafile:
     # plt.plot(X, Y, color='red')
 # plt.show()
 
-with open('generatePartiallySortedInput.txt', 'r') as datafile:
+with open('/Applications/IntelliJ IDEA CE.app/Contents/bin/PROBABILITY_QUICKSORT_ANALYSIS/src/generatePartiallySortedInput1.txt', 'r') as datafile:
     graph2 = csv.reader(datafile, delimiter=',')
 
     for ROWS in graph2:
@@ -40,7 +40,7 @@ with open('generatePartiallySortedInput.txt', 'r') as datafile:
     # plt.plot(X, Y,color='green')
 # plt.show()
 
-with open('generateMostlySortedInput.txt', 'r') as datafile:
+with open('/Applications/IntelliJ IDEA CE.app/Contents/bin/PROBABILITY_QUICKSORT_ANALYSIS/src/generateMostlySortedInput1.txt', 'r') as datafile:
     graph3 = csv.reader(datafile, delimiter=',')
 
     for ROWS in graph3:
@@ -51,25 +51,25 @@ with open('generateMostlySortedInput.txt', 'r') as datafile:
 # plt.show()
 
 
-# plt.subplot(1, 3, 1)
-# plt.plot(x, y, color="black")
-plt.plot(X1, Y1, color='tab:blue')
-plt.title('Graph of the Deterministic Algorithm')
-# plt.xlabel('Array SIze')
-# plt.ylabel('Execution Runtime')
-# plt.legend(["2nln(n)", "generateRandomInput"])
-
-# plt.subplot(1, 3, 2)
-# plt.plot(x, y, color="black")
-plt.plot(X2, Y2, color='tab:green')
-# plt.xlabel('Array SIze')
-# plt.legend(["2nln(n)", "generatePartiallySortedInput"])
-
-# plt.subplot(1, 3, 3)
+plt.subplot(1, 3, 1)
 plt.plot(x, y, color="black")
-plt.plot(X3, Y3, color='tab:red')
+plt.plot(X1, Y1, color='blue')
+plt.title('Graph of the Deterministic Algorithm')
 plt.xlabel('Array SIze')
-plt.legend(["generateRandomInput", "generatePartiallySortedInput", "2nln(n)", "generateMostlySortedInput"])
+plt.ylabel('Execution Runtime')
+plt.legend(["2nln(n)", "generateRandomInput"])
+
+plt.subplot(1, 3, 2)
+plt.plot(x, y, color="black")
+plt.plot(X2, Y2, color='green')
+plt.xlabel('Array SIze')
+plt.legend(["2nln(n)", "generatePartiallySortedInput"])
+
+plt.subplot(1, 3, 3)
+plt.plot(x, y, color="black")
+plt.plot(X3, Y3, color='red')
+plt.xlabel('Array SIze')
+plt.legend(["2nln(n)", "generateMostlySortedInput"])
 
 
 

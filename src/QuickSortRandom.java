@@ -6,7 +6,7 @@ public class QuickSortRandom {
         String[] arrayTypes = new String[]{"generateRandomInput","generatePartiallySortedInput","generateMostlySortedInput"};
 
 //        double average = computeAverage(20,100000,arrayTypes[0]);
-        int maxArraySize = 500;
+        int maxArraySize = 10000;
         int numTries = 100;
         int nForVariance = 400;
 
