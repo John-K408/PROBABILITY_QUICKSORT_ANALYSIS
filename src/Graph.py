@@ -54,7 +54,7 @@ with open('/Applications/IntelliJ IDEA CE.app/Contents/bin/PROBABILITY_QUICKSORT
 plt.subplot(1, 3, 1)
 plt.plot(x, y, color="black")
 plt.plot(X1, Y1, color='blue')
-plt.title('Graph of the Deterministic Algorithm')
+plt.title('Graph of the Random Algorithm')
 plt.xlabel('Array SIze')
 plt.ylabel('Execution Runtime')
 plt.legend(["2nln(n)", "generateRandomInput"])
@@ -68,8 +68,8 @@ plt.legend(["2nln(n)", "generatePartiallySortedInput"])
 plt.subplot(1, 3, 3)
 plt.plot(x, y, color="black")
 plt.plot(X3, Y3, color='red')
-plt.xlabel('Array SIze')
-plt.legend(["2nln(n)", "generateMostlySortedInput"])
+plt.xlabel('Array Size')
+plt.legend(["generateRandomInput", "generatePartiallySortedInput", "2nln(n)", "generateMostlySortedInput"])
 
 
 
