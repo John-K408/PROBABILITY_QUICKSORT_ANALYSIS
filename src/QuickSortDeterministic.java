@@ -12,9 +12,9 @@ public class QuickSortDeterministic {
 
 //        double average = computeAverage(20,100000,arrayTypes[0]);
 
-        int maxArraySize = 2000;
+        int maxArraySize = 5000;
         int numTries = 100;
-        int nForVariance = 1500;
+        int nForVariance = 2000;
 
         //These array will be filled with the individual counts for each instance of the array of given
         // size n,that will be generated in ComputeAverage
@@ -34,7 +34,7 @@ public class QuickSortDeterministic {
         int[] arrShuffle = generate.generateMostlySortedInput(10);
         System.out.println("Array before Shuffle: "+Arrays.toString(arrShuffle));
 
-        fisherYatesShuffle(arrShuffle);
+        //fisherYatesShuffle(arrShuffle);
 
         System.out.println("Array after shuffle: " + Arrays.toString(arrShuffle));
 
@@ -58,11 +58,7 @@ public class QuickSortDeterministic {
 
 
 
-
-
-
-
-    //CODE FOR PRINTING AVERAGES TO RESPECTIVE FILES FOR DIFFERENT N'S
+        //NB: THE CODE BELOW IS USED TO WRITE TO AN OUTPUT FILE SO WE CAN PLOT GRAPHS
 
 //        try {
 //            PrintStream output = new PrintStream("generateRandomInput.txt");
@@ -129,24 +125,24 @@ public class QuickSortDeterministic {
 //        }
 
         //VARIANCE FOR RANDOM INPUT
-//        System.out.println( "Variance For RandomInput: "+computeVariance(countsRandomInput,averageForRandomInput,numTries));
-//
+        System.out.println( "Variance For RandomInput: "+computeVariance(countsRandomInput,averageForRandomInput,numTries));
+
 //        //VARIANCE FOR PARTIALLY SORTED INPUT
-//        System.out.println("Variance for PartiallySortedInput: " + computeVariance(countsPartiallySortedInput,averageForPartiallySortedInput,numTries));
-//
+        System.out.println("Variance for PartiallySortedInput: " + computeVariance(countsPartiallySortedInput,averageForPartiallySortedInput,numTries));
+
 //        //VARIANCE FOR MOSTLY SORTED INPUT
-//
-//        System.out.println("Variance For MostlySortedInput: "  + computeVariance(countsMostlySortedInput,averageForMostlySortedInput,numTries));
+
+        System.out.println("Variance For MostlySortedInput: "  + computeVariance(countsMostlySortedInput,averageForMostlySortedInput,numTries));
 
 
         System.out.println("Average For RandomInput: " + averageForRandomInput);
         System.out.println("Average For PartiallySortedInput: " + averageForPartiallySortedInput);
         System.out.println("Average For MostlySortedInput: " + averageForMostlySortedInput);
 
-//        System.out.println("Standardized Variance RandomInput: " + computeVariance(countsRandomInput,averageForRandomInput,numTries)/Math.pow(averageForRandomInput,2));
-//        System.out.println("Standardized Variance PSInput: " + computeVariance(countsPartiallySortedInput,averageForPartiallySortedInput,numTries)/Math.pow(averageForPartiallySortedInput,2));
-//        System.out.println("Standardized Variance MSInput: " + computeVariance(countsMostlySortedInput,averageForMostlySortedInput,numTries)/Math.pow(averageForMostlySortedInput,2));
-//
+        System.out.println("Standardized Variance RandomInput: " + computeVariance(countsRandomInput,averageForRandomInput,numTries)/Math.pow(averageForRandomInput,2));
+        System.out.println("Standardized Variance PSInput: " + computeVariance(countsPartiallySortedInput,averageForPartiallySortedInput,numTries)/Math.pow(averageForPartiallySortedInput,2));
+        System.out.println("Standardized Variance MSInput: " + computeVariance(countsMostlySortedInput,averageForMostlySortedInput,numTries)/Math.pow(averageForMostlySortedInput,2));
+
 
 
 
@@ -268,14 +264,14 @@ public class QuickSortDeterministic {
             if(arrayInputType.equalsIgnoreCase("generaterandominput")){
                 array = generator.generateRandomInput(arraysize);
                 Arrays.toString(array);
-                fisherYatesShuffle(array);
+//                fisherYatesShuffle(array);
                 Arrays.toString(array);
             }
             else if(arrayInputType.equalsIgnoreCase("generatepartiallysortedinput")){
                 array = generator.generatePartiallySortedInput(arraysize);
 
 
-                fisherYatesShuffle(array);
+//                fisherYatesShuffle(array);
 
             }
 
@@ -283,7 +279,7 @@ public class QuickSortDeterministic {
                 array = generator.generateMostlySortedInput(arraysize);
 
 
-                fisherYatesShuffle(array);
+//                fisherYatesShuffle(array);
 
             }
             else{

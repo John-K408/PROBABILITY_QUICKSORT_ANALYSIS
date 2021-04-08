@@ -6,9 +6,9 @@ public class QuickSortRandom {
         String[] arrayTypes = new String[]{"generateRandomInput","generatePartiallySortedInput","generateMostlySortedInput"};
 
 //        double average = computeAverage(20,100000,arrayTypes[0]);
-        int maxArraySize = 2000;
+        int maxArraySize = 1000;
         int numTries = 100;
-        int nForVariance = 1500;
+        int nForVariance = 800;
 
 
         //These array will be filled with the individual counts for each instance of the array of given
@@ -44,6 +44,8 @@ public class QuickSortRandom {
             }
 
         }
+
+        //NB: THE CODE BELOW IS USED TO WRITE TO AN OUTPUT FILE SO WE CAN PLOT GRAPHS
 
 
 //        try {
@@ -133,6 +135,8 @@ public class QuickSortRandom {
 
 
     }
+
+
 
     public static int QuickSort(int[] array,int low, int high,int count){
         if(high > low){
