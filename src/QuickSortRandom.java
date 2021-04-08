@@ -6,9 +6,9 @@ public class QuickSortRandom {
         String[] arrayTypes = new String[]{"generateRandomInput","generatePartiallySortedInput","generateMostlySortedInput"};
 
 //        double average = computeAverage(20,100000,arrayTypes[0]);
-        int maxArraySize = 10000;
+        int maxArraySize = 2000;
         int numTries = 100;
-        int nForVariance = 400;
+        int nForVariance = 1500;
 
 
         //These array will be filled with the individual counts for each instance of the array of given
@@ -18,75 +18,116 @@ public class QuickSortRandom {
         int[]countsPartiallySortedInput = new int[numTries];
         int[]countsMostlySortedInput =new int[numTries];
 
-        double averageForRandomInput;
-        double averageForPartiallySortedInput;
-        double averageForMostlySortedInput;
+        double averageForRandomInput = 0;
+        double averageForPartiallySortedInput = 0;
+        double averageForMostlySortedInput = 0;
 
-        try {
-            PrintStream output = new PrintStream("generateRandomInput1.txt");
-            double average;
-            for(int n = 1; n <= maxArraySize;n++) {
-                if(n == nForVariance){
-                    average = computeAverage(n,countsRandomInput, numTries, arrayTypes[0]);
-                    averageForRandomInput = average;
-                }
-                else{
-                    average = computeAverage(n,new int[numTries],numTries,arrayTypes[0]);
-                }
-                output.printf(n + "," + average);
-                output.println();
+
+        double average = -1;
+
+        for(int n = 1; n <= maxArraySize;n++){
+            if(n == nForVariance){
+                average = computeAverage(n,countsRandomInput,numTries,arrayTypes[0]);
+                averageForRandomInput  = average;
+                average = computeAverage(n,countsPartiallySortedInput,numTries,arrayTypes[1]);
+                averageForPartiallySortedInput = average;
+                average = computeAverage(n,countsMostlySortedInput,numTries,arrayTypes[2]);
+                averageForMostlySortedInput  = average;
             }
-            output.close();
-        }
-        catch(Exception e) {
-            e.getStackTrace();
-        }
+            else{
+               computeAverage(n, new int[numTries],numTries,arrayTypes[0]);
+                computeAverage(n, new int[numTries],numTries,arrayTypes[1]);
+                computeAverage(n, new int[numTries],numTries,arrayTypes[2]);
 
-        try {
-            PrintStream output = new PrintStream("generatePartiallySortedInput1.txt");
-            double average;
 
-            for(int n = 1; n <= maxArraySize;n++) {
-                if(n == nForVariance){
-                    average = computeAverage(n,countsPartiallySortedInput, numTries, arrayTypes[1]);
-                    averageForPartiallySortedInput = average;
-                }
-                else{
-                    average = computeAverage(n,new int[numTries],numTries,arrayTypes[1]);
-                }
-                output.printf(n + "," + average);
-                output.println();
+
             }
-            output.close();
-        }
-        catch(Exception e) {
-            e.getStackTrace();
+
         }
 
-        try {
-            PrintStream output = new PrintStream("generateMostlySortedInput1.txt");
-            double average;
-            for(int n = 1; n <= maxArraySize;n++) {
-                if(n == nForVariance){
-                    average = computeAverage(n,countsMostlySortedInput, numTries, arrayTypes[2]);
-                    averageForMostlySortedInput = average;
-                }
-                else{
-                    average = computeAverage(n,new int[numTries],numTries,arrayTypes[2]);
-                }
-                output.printf(n + "," + average);
-                output.println();
-            }
-            output.close();
-        }
-        catch(Exception e) {
-            e.getStackTrace();
-        }
 
-//        int[] array = new int[]{1,4,3,8,7,5,9,0};
-//        System.out.println(QuickSort(array,0,array.length - 1,0));
+//        try {
+//            PrintStream output = new PrintStream("generateRandomInput1.txt");
+//            double average;
+//            for(int n = 1; n <= maxArraySize;n++) {
+//                if(n == nForVariance){
+//                    average = computeAverage(n,countsRandomInput, numTries, arrayTypes[0]);
+//                    averageForRandomInput = average;
+//                }
+//                else{
+//                    average = computeAverage(n,new int[numTries],numTries,arrayTypes[0]);
+//                }
+//                output.printf(n + "," + average);
+//                output.println();
+//            }
+//            output.close();
+//        }
+//        catch(Exception e) {
+//            e.getStackTrace();
+//        }
+//
+//        try {
+//            PrintStream output = new PrintStream("generatePartiallySortedInput1.txt");
+//            double average;
+//
+//            for(int n = 1; n <= maxArraySize;n++) {
+//                if(n == nForVariance){
+//                    average = computeAverage(n,countsPartiallySortedInput, numTries, arrayTypes[1]);
+//                    averageForPartiallySortedInput = average;
+//                }
+//                else{
+//                    average = computeAverage(n,new int[numTries],numTries,arrayTypes[1]);
+//                }
+//                output.printf(n + "," + average);
+//                output.println();
+//            }
+//            output.close();
+//        }
+//        catch(Exception e) {
+//            e.getStackTrace();
+//        }
+//
+//        try {
+//            PrintStream output = new PrintStream("generateMostlySortedInput1.txt");
+//            double average;
+//            for(int n = 1; n <= maxArraySize;n++) {
+//                if(n == nForVariance){
+//                    average = computeAverage(n,countsMostlySortedInput, numTries, arrayTypes[2]);
+//                    averageForMostlySortedInput = average;
+//                }
+//                else{
+//                    average = computeAverage(n,new int[numTries],numTries,arrayTypes[2]);
+//                }
+//                output.printf(n + "," + average);
+//                output.println();
+//            }
+//            output.close();
+//        }
+//        catch(Exception e) {
+//            e.getStackTrace();
+//        }
 
-        //Generate ArrayTypes = new Generate();
+        //VARIANCE FOR RANDOM INPUT
+        System.out.println( "Variance For  RandomInput: " + computeVariance(countsRandomInput,averageForRandomInput,numTries));
+
+        //VARIANCE FOR PARTIALLY SORTED INPUT
+        System.out.println("Variance For PartiallySortedInput: " +computeVariance( countsPartiallySortedInput,averageForPartiallySortedInput,numTries));
+
+        //VARIANCE FOR MOSTLY SORTED INPUT
+
+        System.out.println("Variance For MostlySortedInput: "+computeVariance(countsMostlySortedInput,averageForMostlySortedInput,numTries));
+
+
+        System.out.println("Average For RandomInput: " + averageForRandomInput);
+        System.out.println("Average For PartiallySortedInput: " + averageForPartiallySortedInput);
+        System.out.println("Average For MostlySortedInput: " + averageForMostlySortedInput);
+
+        System.out.println("Standardized Variance RandomInput: " + computeVariance(countsRandomInput,averageForRandomInput,numTries)/Math.pow(averageForRandomInput,2));
+        System.out.println("Standardized Variance PSInput: " + computeVariance(countsPartiallySortedInput,averageForPartiallySortedInput,numTries)/Math.pow(averageForPartiallySortedInput,2));
+        System.out.println("Standardized Variance MSInput: " + computeVariance(countsMostlySortedInput,averageForMostlySortedInput,numTries)/Math.pow(averageForMostlySortedInput,2));
+
+
+
 
 
 
@@ -186,5 +227,16 @@ public class QuickSortRandom {
 
         return totalCounter/numTries;
 
+    }
+
+    public static double computeVariance(int[]array,double mean,int numTries){
+
+        double sqDiffSum = 0;
+
+        for(int i = 0; i < array.length;i++){
+            sqDiffSum += Math.pow((array[i] - mean),2);
+        }
+
+        return sqDiffSum/numTries;
     }
 }
