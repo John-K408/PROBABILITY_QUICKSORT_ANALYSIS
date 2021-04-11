@@ -16,6 +16,8 @@ public class QuickSortDeterministic {
         int numTries = 100;
         int nForVariance = 800;
 
+        if(nForVariance > maxArraySize) System.err.println("nForVariance cannot exceed maximum array size");
+
         //These array will be filled with the individual counts for each instance of the array of given
         // size n,that will be generated in ComputeAverage
         //The array that we will use depends on the configuration we are looking for.
