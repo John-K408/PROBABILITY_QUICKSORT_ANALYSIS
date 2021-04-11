@@ -3,10 +3,6 @@ import java.util.Arrays;
 
 public class QuickSortDeterministic {
     public static void main(String[] args) {
-        /*Generate arr = new Generate();
-        int[] arr1 = arr.generateMostlySortedInput(10);
-        int[] arr2 = arr.generateMostlySortedInput(10);
-        int[] arr3 = arr.generateMostlySortedInput(10);*/
 
         String[] arrayTypes = new String[]{"generateRandomInput","generatePartiallySortedInput","generateMostlySortedInput"};
 
@@ -295,14 +291,12 @@ public class QuickSortDeterministic {
             int currCount = QuickSort(array,0,arraysize - 1,0);
             countsArray[i] = currCount;
 
-//            System.out.println("-------Current count-----");
-//            System.out.println(currCount);
+
 
             totalCounter += currCount;
         }
 
-//        System.out.println("-----------Average-------------");
-//        System.out.println(totalCounter/numTries);
+
 
 
         return totalCounter/numTries;

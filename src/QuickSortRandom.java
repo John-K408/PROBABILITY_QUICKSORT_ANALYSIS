@@ -222,14 +222,10 @@ public class QuickSortRandom {
             int currCount = QuickSort(array,0,arraysize - 1,0);
             countsArray[i] = currCount;
 
-//            System.out.println("-------Current count-----");
-//            System.out.println(currCount);
+
 
             totalCounter += currCount;
         }
-//        System.out.println("-----------Average-------------");
-//        System.out.println(totalCounter/numTries);
-
 
         return totalCounter/numTries;
 
