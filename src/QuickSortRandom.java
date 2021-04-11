@@ -5,7 +5,7 @@ public class QuickSortRandom {
     public static  void main(String[] args) {
         String[] arrayTypes = new String[]{"generateRandomInput","generatePartiallySortedInput","generateMostlySortedInput"};
 
-//        double average = computeAverage(20,100000,arrayTypes[0]);
+//       changeable variables
         int maxArraySize = 1000;
         int numTries = 100;
         int nForVariance = 800;
@@ -142,8 +142,6 @@ public class QuickSortRandom {
         if(high > low){
             //the randomIndex is the index of the number we will be using to group the array from low to high
             int randomIndex = low + (int)(Math.random()*(high - low + 1));
-            //int randomIndex = high;
-            //System.out.println(randomIndex);
 
             //partition method returns an array of size 02.
             //the first element will be the partitionIndex and the second will be the number of counts in the partition method.

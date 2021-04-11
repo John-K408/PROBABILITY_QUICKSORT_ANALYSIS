@@ -12,9 +12,9 @@ public class QuickSortDeterministic {
 
 //        double average = computeAverage(20,100000,arrayTypes[0]);
 
-        int maxArraySize = 5000;
+        int maxArraySize = 10000;
         int numTries = 100;
-        int nForVariance = 2000;
+        int nForVariance = 800;
 
         //These array will be filled with the individual counts for each instance of the array of given
         // size n,that will be generated in ComputeAverage
