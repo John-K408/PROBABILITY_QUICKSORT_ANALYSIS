@@ -12,7 +12,7 @@ In this program,we were analyzing the runtime of quicksort using both a determin
 
 The program is divided into two parts - the deterministic algorithm and the randomized algorithm. To run any, a user can choose to go with
 the default value of the maximum array size provided or select their own. This variable indicates the maximum size of the array the user
-wants to analyze for all array types. The user can also use the default value for numTries or choose to go with the default version. The 
+wants to analyze for all array types. The user can also use the default value for numTries or choose a preferred one. The 
 numTries variable indicates the number of simulations of array of given size and type to run in order to compute the average count. Lastly,
 a user can choose the default value for nForVariance or change to a preferred value - note that nForVariance cannot be more than maxArraySize.
 The nForVariance Variable indicates the n value to select for variance analysis. 
@@ -21,8 +21,7 @@ The nForVariance Variable indicates the n value to select for variance analysis.
 
 **Main Method** : 
 
-        The main method sets up the initial variables (like averageForRandomInput), and for loops needed to compute average, variance, and 
-        standardized variance. It also prints all needed summary data after the program is done running so we can analyze.
+        The main method sets up the initial arrays such as the one that contains averages for each arraySize (averageForXInput)  and the one that contains multiple averages for a given n (averageRunsXInput). It also prints all needed summary data in the console after the program is done running so we can analyze.
         
         
 **QuickSort** :
@@ -49,27 +48,24 @@ The nForVariance Variable indicates the n value to select for variance analysis.
   **computeAverage**:
   
   
-      This method generates an array of a specified size and type and runs quicksort on it getting the count each time. The program then repeats this "numTries" number of times adding the counts 
-      each time. It then divides the sum of all counts by the numTries to get the average count for that array size and type.
+      This method generates an array of a specified size and type and runs quicksort on it getting the count each time. The program then repeats                                                                            this "numTries" number of times adding the counts each time. It then divides the sum of all counts by the numTries to get the average count for that array size and type.
       
 
  **computeAverageOfAverages**:
 
-      This method takes in an array containing multiple averages for a given 
-      n and returns the average of them to be used for variance and
+      This method takes in an array containing multiple averages for a given n and returns the average of them to be used for variance and
       standard variance computation.
       
  **ComputeVariance**: 
     
-      By the end of computeAverage, we will have an array containing all counts that were generated during average computation for a given array 
-      size and type. We would also have the mean so all this program does is to loop through this array and find the square of the difference 
-      between each count and the average and add them up.
+      This method takes in an array of averages for a given array size and type, and the average value of these averages and uses that to compute
+      variance according to the formula for variance.
       
       
  **Compute Standard Variance**:
  
  
-    This program takes in the variance and mean for a given array size and type and divides
+    This program takes in the variance and averageOfAverages for a given array size and type, and divides the variance by the square of the    averageOfAveraes.
   
   
         
