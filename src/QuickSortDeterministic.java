@@ -8,7 +8,7 @@ public class QuickSortDeterministic {
 
 //        double average = computeAverage(20,100000,arrayTypes[0]);
 
-        int maxArraySize = 10000;
+        int maxArraySize = 1000;
         int numTries = 100;
         int nForVariance = 800;
 

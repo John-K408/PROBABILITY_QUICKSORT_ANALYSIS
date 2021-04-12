@@ -49,12 +49,17 @@ The nForVariance Variable indicates the n value to select for variance analysis.
   **computeAverage**:
   
   
-      This method generates an array of a specified size and type and runs quicksort on it, getting the count. It stores the count in an array at
-      a given index to be used later on for variance computation. The program then repeats "numTries" number of times adding the counts 
-      each time. It then divides the sum of averages by the numTries to get the average count for that array size and type.
+      This method generates an array of a specified size and type and runs quicksort on it getting the count each time. The program then repeats this "numTries" number of times adding the counts 
+      each time. It then divides the sum of all counts by the numTries to get the average count for that array size and type.
       
+
+ **computeAverageOfAverages**:
+
+      This method takes in an array containing multiple averages for a given 
+      n and returns the average of them to be used for variance and
+      standard variance computation.
       
-**ComputeVariance**: 
+ **ComputeVariance**: 
     
       By the end of computeAverage, we will have an array containing all counts that were generated during average computation for a given array 
       size and type. We would also have the mean so all this program does is to loop through this array and find the square of the difference 
