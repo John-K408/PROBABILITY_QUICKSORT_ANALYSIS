@@ -312,7 +312,7 @@ public class QuickSortDeterministic {
         }
 
 
-        return sqDiffSum/numTries;
+        return sqDiffSum/(numTries - 1);
     }
 
     public static double computeStandardVariance(double variance,double mean){

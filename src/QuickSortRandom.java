@@ -239,7 +239,7 @@ public class QuickSortRandom {
             sqDiffSum += Math.pow((array[i] - mean),2);
         }
 
-        return sqDiffSum/numTries;
+        return sqDiffSum/(numTries - 1);
     }
 
     public static double computeStandardVariance(double variance, double mean){
