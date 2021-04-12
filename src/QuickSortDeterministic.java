@@ -14,16 +14,14 @@ public class QuickSortDeterministic {
 
         if(nForVariance > maxArraySize) System.err.println("nForVariance cannot exceed maximum array size");
 
-        //These array will be filled with the individual counts for each instance of the array of given
-        // size n,that will be generated in ComputeAverage
-        //The array that we will use depends on the configuration we are looking for.
-        int[] countsRandomInput = new int[numTries];
-        int[]countsPartiallySortedInput = new int[numTries];
-        int[]countsMostlySortedInput =new int[numTries];
+        //These arrays will contain the averages for multiple runs of computeAverage for a given arraysize.
+        double [] averageRunsRandomInput = new double [numTries];
+        double [] averageRunsPartiallySortedInput = new double [numTries];
+        double [] averageRunsMostlySortedInput =new double [numTries];
 
-        double[] averageForRandomInput = new double[maxArraySize];
-        double[] averageForPartiallySortedInput = new double[maxArraySize];
-        double[] averageForMostlySortedInput = new double[maxArraySize];
+        double[] averageForRandomInput = new double[maxArraySize + 1];
+        double[] averageForPartiallySortedInput = new double[maxArraySize + 1];
+        double[] averageForMostlySortedInput = new double[maxArraySize + 1];
 
 
         Generate generate = new Generate();
@@ -36,162 +34,64 @@ public class QuickSortDeterministic {
 
         System.out.println("Array after shuffle: " + Arrays.toString(arrShuffle));
 
+        //stored averages for line plot
         for(int n = 1; n <= maxArraySize;n++){
 
-                averageForRandomInput[n] = computeAverage(n,countsRandomInput,numTries,arrayTypes[0]);
+            averageForRandomInput[n] = computeAverage(n,numTries,arrayTypes[0]);
 
-                averageForPartiallySortedInput[n] = computeAverage(n,countsPartiallySortedInput,numTries,arrayTypes[1]);
+            averageForPartiallySortedInput[n] = computeAverage(n,numTries,arrayTypes[1]);
 
-                averageForMostlySortedInput[n] = computeAverage(n,countsMostlySortedInput,numTries,arrayTypes[2]);
+            averageForMostlySortedInput[n] = computeAverage(n,numTries,arrayTypes[2]);
 
         }
 
+        //run average on each configuration for numTries number of times and store the values to be used for histogram.
+        for(int i = 0; i < numTries;i++){
+            averageRunsRandomInput[i] = computeAverage(nForVariance,numTries,arrayTypes[0]);
+            averageRunsPartiallySortedInput[i] = computeAverage(nForVariance,numTries,arrayTypes[1]);
+            averageRunsMostlySortedInput[i] = computeAverage(nForVariance,numTries,arrayTypes[2]);
+        }
 
 
         //NB: THE CODE BELOW IS USED TO WRITE TO AN OUTPUT FILE SO WE CAN PLOT GRAPHS
 
-//        try {
-//            PrintStream output = new PrintStream("generateRandomInput.txt");
-//            double average;
-//            for(int n = 1; n <= maxArraySize;n++) {
-//                if(n == nForVariance){
-//                    average = computeAverage(n,countsRandomInput, numTries, arrayTypes[0]);
-//                    averageForRandomInput = average;
-//                }
-//                else{
-//                    average = computeAverage(n,new int[numTries],numTries,arrayTypes[0]);
-//                }
-//                output.print(n + "," + average);
-//                output.println();
-//            }
-//            output.close();
-//        }
-//        catch(Exception e) {
-//            e.getStackTrace();
-//        }
-//
-//
-//        try {
-//            PrintStream output = new PrintStream("generatePartiallySortedInput.txt");
-//            double average;
-//
-//            for(int n = 1; n <= maxArraySize;n++) {
-//                if(n == nForVariance){
-//                    average = computeAverage(n,countsPartiallySortedInput, numTries, arrayTypes[1]);
-//                    averageForPartiallySortedInput = average;
-//                }
-//                else{
-//                    average = computeAverage(n,new int[numTries],numTries,arrayTypes[1]);
-//                }
-//                output.print(n + "," + average);
-//                output.println();
-//            }
-//            output.close();
-//        }
-//        catch(Exception e) {
-//            e.getStackTrace();
-//        }
-//
-//
-//
-//        try {
-//            PrintStream output = new PrintStream("generateMostlySortedInput.txt");
-//            double average;
-//            for(int n = 1; n <= maxArraySize;n++) {
-//                if(n == nForVariance){
-//                    average = computeAverage(n,countsMostlySortedInput, numTries, arrayTypes[2]);
-//                    averageForMostlySortedInput = average;
-//                }
-//                else{
-//                    average = computeAverage(n,new int[numTries],numTries,arrayTypes[2]);
-//                }
-//                output.print(n + "," + average);
-//                output.println();
-//            }
-//            output.close();
-//        }
-//        catch(Exception e) {
-//            e.getStackTrace();
-//        }
+        //get the average of all the values in the histogram to be used for empirical variance and standard variance computation
+
+        double averageOfAveragesRandomInput = computeAverageOfAverages(averageRunsRandomInput);
+        double averageOfAveragesPartiallySortedInput = computeAverageOfAverages(averageRunsPartiallySortedInput);
+        double averageOfAveragesMostlySortedInput = computeAverageOfAverages(averageRunsMostlySortedInput);
+
+
+        System.out.println("Average For RandomInput: " + averageForRandomInput[nForVariance]);
+        System.out.println("Average For PartiallySortedInput: " + averageForPartiallySortedInput[nForVariance]);
+        System.out.println("Average For MostlySortedInput: " + averageForMostlySortedInput[nForVariance]);
+
 
         //VARIANCE FOR RANDOM INPUT
-
-        //VARIANCE FOR RANDOM INPUT
-        double varianceForRandomInput = computeVariance(countsRandomInput,averageForRandomInput[nForVariance],numTries);
+        double varianceForRandomInput = computeVariance(averageRunsRandomInput,averageOfAveragesRandomInput);
         System.out.println( "Variance For  RandomInput: " + varianceForRandomInput );
 
         //VARIANCE FOR PARTIALLY SORTED INPUT
-        double varianceForPartiallySortedInput = computeVariance( countsPartiallySortedInput,averageForPartiallySortedInput[nForVariance],numTries);
+        double varianceForPartiallySortedInput = computeVariance( averageRunsPartiallySortedInput,averageOfAveragesPartiallySortedInput);
         System.out.println("Variance For PartiallySortedInput: " + varianceForPartiallySortedInput);
 
         //VARIANCE FOR MOSTLY SORTED INPUT
-        double varianceForMostlySortedInput = computeVariance( countsPartiallySortedInput,averageForPartiallySortedInput[nForVariance],numTries);
+        double varianceForMostlySortedInput = computeVariance( averageRunsMostlySortedInput,averageOfAveragesMostlySortedInput);
         System.out.println("Variance For MostlySortedInput: "+varianceForMostlySortedInput);
 
 
-        System.out.println("Average For RandomInput: " + averageForRandomInput);
-        System.out.println("Average For PartiallySortedInput: " + averageForPartiallySortedInput);
-        System.out.println("Average For MostlySortedInput: " + averageForMostlySortedInput);
 
-        System.out.println("Standardized Variance RandomInput: " + computeStandardVariance(varianceForRandomInput,averageForRandomInput[nForVariance]));
-        System.out.println("Standardized Variance PartiallySortedInput: " + computeStandardVariance(varianceForPartiallySortedInput,averageForPartiallySortedInput[nForVariance]));
-        System.out.println("Standardized Variance MostlySortedInput: " + computeStandardVariance(varianceForMostlySortedInput,averageForMostlySortedInput[nForVariance]));
+
+        System.out.println("Standardized Variance RandomInput: " + computeStandardVariance(varianceForRandomInput,averageOfAveragesRandomInput));
+        System.out.println("Standardized Variance PartiallySortedInput: " + computeStandardVariance(varianceForPartiallySortedInput,averageOfAveragesPartiallySortedInput));
+        System.out.println("Standardized Variance MostlySortedInput: " + computeStandardVariance(varianceForMostlySortedInput,averageOfAveragesMostlySortedInput));
 
 
 
 
     }
 
-//    public static void averageCaller(int maxArraySize,int[] countsArray,int numTries, String arrayType){
-//        if(arrayType.toLowerCase().equals("generaterandominput")){
-//            try {
-//                PrintStream output = new PrintStream("generateRandomInput.txt");
-//
-//                for(int n = 1; n <= maxArraySize;n++) {
-//                    output.printf(n + "," + computeAverage(n,countsArray, 100, arrayType));
-//                    output.println();
-//                }
-//                output.close();
-//            }
-//            catch(Exception e) {
-//                e.getStackTrace();
-//            }
-//        }
-//        if(arrayType.toLowerCase().equals("generatepartiallysortedinput")){
-//            try {
-//                PrintStream output = new PrintStream("generatePartiallySortedInput.txt");
-//
-//                for(int n = 1; n <= maxArraySize;n++) {
-//                    output.printf(n + "," + computeAverage(n,countsArray, 100, arrayType));
-//                    output.println();
-//                }
-//                output.close();
-//            }
-//            catch(Exception e) {
-//                e.getStackTrace();
-//            }
-//        }
-//
-//        if(arrayType.toLowerCase().equals("generatemostlysortedinput")){
-//            try {
-//                PrintStream output = new PrintStream("generateMostlySortedInput.txt");
-//
-//                for(int n = 1; n <= maxArraySize;n++) {
-//                    output.printf(n + "," + computeAverage(n,countsArray, 100, arrayType));
-//                    output.println();
-//                }
-//                output.close();
-//            }
-//            catch(Exception e) {
-//                e.getStackTrace();
-//            }
-//        }
-//
-//
-//
-//
-//
-//    }
+
 
     public static int QuickSort (int[] arr, int lo, int hi, int counter) {
         if (hi>lo){
@@ -239,7 +139,7 @@ public class QuickSortDeterministic {
         array[j] = temp;
     }
 
-    public static double computeAverage(int arraysize,int []countsArray, int numTries, String arrayInputType){
+    public static double computeAverage(int arraysize, int numTries, String arrayInputType){
         //if the user puts in the wrong arraysize to be generated, print error
         if(arraysize <1) System.err.println("The size of the array must be at least 1");
 
@@ -281,7 +181,7 @@ public class QuickSortDeterministic {
 
             //the count (number of comparisons) of quicksort for this current input
             int currCount = QuickSort(array,0,arraysize - 1,0);
-            countsArray[i] = currCount;
+
 
 
 
@@ -295,7 +195,18 @@ public class QuickSortDeterministic {
 
     }
 
-    public static double computeVariance(int[]array,double mean,int numTries){
+    public static double computeAverageOfAverages(double[]array){
+
+        double avSum = 0;
+
+        for(double a: array){
+            avSum += a;
+        }
+        return  avSum/array.length;
+    }
+
+    public static double computeVariance(double[]array,double mean){
+
 
         double sqDiffSum = 0;
 
@@ -303,8 +214,7 @@ public class QuickSortDeterministic {
             sqDiffSum += Math.pow((array[i] - mean),2);
         }
 
-
-        return sqDiffSum/(numTries - 1);
+        return sqDiffSum/(array.length - 1);
     }
 
     public static double computeStandardVariance(double variance,double mean){
