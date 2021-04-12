@@ -157,14 +157,14 @@ public class QuickSortDeterministic {
             if(arrayInputType.equalsIgnoreCase("generaterandominput")){
                 array = generator.generateRandomInput(arraysize);
                 Arrays.toString(array);
-//                fisherYatesShuffle(array);
+               fisherYatesShuffle(array);
                 Arrays.toString(array);
             }
             else if(arrayInputType.equalsIgnoreCase("generatepartiallysortedinput")){
                 array = generator.generatePartiallySortedInput(arraysize);
 
 
-//                fisherYatesShuffle(array);
+                //fisherYatesShuffle(array);
 
             }
 
@@ -172,7 +172,7 @@ public class QuickSortDeterministic {
                 array = generator.generateMostlySortedInput(arraysize);
 
 
-//                fisherYatesShuffle(array);
+                //fisherYatesShuffle(array);
 
             }
             else{
