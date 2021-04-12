@@ -20,30 +20,24 @@ public class QuickSortRandom {
         int[]countsPartiallySortedInput = new int[numTries];
         int[]countsMostlySortedInput =new int[numTries];
 
-        double averageForRandomInput = 0;
-        double averageForPartiallySortedInput = 0;
-        double averageForMostlySortedInput = 0;
+        double[] averageForRandomInput = new double[maxArraySize];
+        double [] averageForPartiallySortedInput = new double[maxArraySize];
+        double [] averageForMostlySortedInput = new double[maxArraySize];
+
+//        double averageForRandomInput = 0;
+//        double averageForPartiallySortedInput = 0;
+//        double averageForMostlySortedInput = 0;
 
 
         double average = -1;
 
         for(int n = 1; n <= maxArraySize;n++){
-            if(n == nForVariance){
-                average = computeAverage(n,countsRandomInput,numTries,arrayTypes[0]);
-                averageForRandomInput  = average;
-                average = computeAverage(n,countsPartiallySortedInput,numTries,arrayTypes[1]);
-                averageForPartiallySortedInput = average;
-                average = computeAverage(n,countsMostlySortedInput,numTries,arrayTypes[2]);
-                averageForMostlySortedInput  = average;
-            }
-            else{
-               computeAverage(n, new int[numTries],numTries,arrayTypes[0]);
-                computeAverage(n, new int[numTries],numTries,arrayTypes[1]);
-                computeAverage(n, new int[numTries],numTries,arrayTypes[2]);
 
+                averageForRandomInput[n] = computeAverage(n,countsRandomInput,numTries,arrayTypes[0]);
 
+                averageForPartiallySortedInput[n] = computeAverage(n,countsPartiallySortedInput,numTries,arrayTypes[1]);
 
-            }
+                averageForMostlySortedInput[n] = computeAverage(n,countsMostlySortedInput,numTries,arrayTypes[2]);
 
         }
 
@@ -112,15 +106,15 @@ public class QuickSortRandom {
 //        }
 
         //VARIANCE FOR RANDOM INPUT
-        double varianceForRandomInput = computeVariance(countsRandomInput,averageForRandomInput,numTries);
+        double varianceForRandomInput = computeVariance(countsRandomInput,averageForRandomInput[nForVariance],numTries);
         System.out.println( "Variance For  RandomInput: " + varianceForRandomInput );
 
         //VARIANCE FOR PARTIALLY SORTED INPUT
-        double varianceForPartiallySortedInput = computeVariance( countsPartiallySortedInput,averageForPartiallySortedInput,numTries);
+        double varianceForPartiallySortedInput = computeVariance( countsPartiallySortedInput,averageForPartiallySortedInput[nForVariance],numTries);
         System.out.println("Variance For PartiallySortedInput: " + varianceForPartiallySortedInput);
 
         //VARIANCE FOR MOSTLY SORTED INPUT
-        double varianceForMostlySortedInput = computeVariance( countsPartiallySortedInput,averageForPartiallySortedInput,numTries);
+        double varianceForMostlySortedInput = computeVariance( countsPartiallySortedInput,averageForPartiallySortedInput[nForVariance],numTries);
         System.out.println("Variance For MostlySortedInput: "+varianceForMostlySortedInput);
 
 
@@ -128,9 +122,9 @@ public class QuickSortRandom {
         System.out.println("Average For PartiallySortedInput: " + averageForPartiallySortedInput);
         System.out.println("Average For MostlySortedInput: " + averageForMostlySortedInput);
 
-        System.out.println("Standardized Variance RandomInput: " + computeStandardVariance(varianceForRandomInput,averageForRandomInput));
-        System.out.println("Standardized Variance PartiallySortedInput: " + computeStandardVariance(varianceForPartiallySortedInput,averageForPartiallySortedInput));
-        System.out.println("Standardized Variance MostlySortedInput: " + computeStandardVariance(varianceForMostlySortedInput,averageForMostlySortedInput));
+        System.out.println("Standardized Variance RandomInput: " + computeStandardVariance(varianceForRandomInput,averageForRandomInput[nForVariance]));
+        System.out.println("Standardized Variance PartiallySortedInput: " + computeStandardVariance(varianceForPartiallySortedInput,averageForPartiallySortedInput[nForVariance]));
+        System.out.println("Standardized Variance MostlySortedInput: " + computeStandardVariance(varianceForMostlySortedInput,averageForMostlySortedInput[nForVariance]));
 
 
 
@@ -239,7 +233,7 @@ public class QuickSortRandom {
             sqDiffSum += Math.pow((array[i] - mean),2);
         }
 
-        return sqDiffSum/numTries;
+        return sqDiffSum/(numTries - 1);
     }
 
     public static double computeStandardVariance(double variance, double mean){
