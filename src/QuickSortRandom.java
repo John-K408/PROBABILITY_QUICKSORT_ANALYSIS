@@ -13,9 +13,7 @@ public class QuickSortRandom {
         if(nForVariance > maxArraySize) System.err.println("nForVariance cannot exceed maximum array size");
 
 
-        //These array will be filled with the individual counts for each instance of the array of given
-        // size n,that will be generated in ComputeAverage
-        //The array that we will use depends on the configuration we are looking for.
+        //These arrays will contain the averages for multiple runs of computeAverage for a given arraysize.
         double[] averageRunsRandomInput = new double[numTries];
         double []averageRunsPartiallySortedInput = new double[numTries];
         double[] averageRunsMostlySortedInput =new double[numTries];

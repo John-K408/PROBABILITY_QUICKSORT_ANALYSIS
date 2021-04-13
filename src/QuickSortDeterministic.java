@@ -6,7 +6,7 @@ public class QuickSortDeterministic {
 
         String[] arrayTypes = new String[]{"generateRandomInput","generatePartiallySortedInput","generateMostlySortedInput"};
 
-//        double average = computeAverage(20,100000,arrayTypes[0]);
+
 
         int maxArraySize = 1000;
         int numTries = 100;
